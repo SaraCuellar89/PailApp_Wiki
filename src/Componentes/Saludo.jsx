@@ -12,10 +12,12 @@ const Saludo = () => {
             </div>
 
             <div className={estilos.caja_2}>
-                <p className={estilos.btn_1}>Descargar</p>
+                <div className={estilos.btn}>
+                    <p className={estilos.texto_btn}>Descargar</p>
+                </div>
 
-                <div className={estilos.btn_2}>
-                    <p>Primeros Pasos</p>
+                <div className={estilos.btn}>
+                    <p className={estilos.texto_btn}>Primeros Pasos</p>
                     <img className={estilos.img} src={flecha} alt="" />
                 </div>
             </div>

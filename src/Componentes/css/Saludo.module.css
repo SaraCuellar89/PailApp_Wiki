@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     padding: 40px 0px;
+    gap: 20px;
 }
 
 .caja_1 {
@@ -13,6 +14,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    gap: 10px;
     border-radius: 10px;
     border-color: var(--color_3);
     border-width: 1px;
@@ -20,33 +22,33 @@
 }
 
 .saludo {
+    min-width: 200px;
     width: 50%;
-    font-size: 30px;
+    font-size: 50px;
     font-weight: bold;
     text-align: center;
 }
 
 .personaje {
     min-width: 200px;
-    width: 40%;
+    width: 35%;
 }
 
 .caja_2 {
     width: 100%;
-    background-color: red;
     display: flex;
+    flex-wrap: wrap;
     justify-content: start;
     gap: 20px;
 }
 
-.btn_1 {
-    background-color: var(--color_4);
-    padding: 10px;
+.texto_btn {
+    font-size: 15px;
 }
 
-.btn_2 {
-    width: 50%;
-    width: fit-content;
+.btn {
+    width: 15%;
+    min-width: 200px;
     background-color: var(--color_4);
     display: flex;
     flex-direction: row;
@@ -54,9 +56,21 @@
     align-items: center;
     gap: 10px;
     padding: 10px;
+    border-radius: 10px;
+    border-color: var(--color_3);
+    border-width: 1px;
+    border-style: solid;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--color_1);
+    filter: drop-shadow(0px 5px 1px rgb(0, 0, 0, 0.5));
 }
 
 .img {
     min-width: 30px;
     width: 5%;
+    margin: 0;
 }  
