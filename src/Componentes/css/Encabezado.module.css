@@ -1,0 +1,58 @@
+.contenedor {
+    background-color: var(--color_1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 0px 0px 5px 5px;
+    border-color: var(--color_3);
+    border-width: 0px 0px 1px 1px;
+    border-style: solid;
+}
+
+.caja_1 {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    min-width: 30px;
+    width: 8%;
+}
+
+.nombre {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.caja_2 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sub_caja {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color_2);
+    border-radius: 5px;
+    border-color: var(--color_3);
+    border-width: 1px;
+    border-style: solid;
+    padding: 0px 10px;
+}
+
+.input {
+    width: 100%;
+    height: 90%;
+    padding: 5px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.img {
+    min-width: 30px;
+    width: 5%;
+}
