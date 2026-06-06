@@ -1,0 +1,144 @@
+.contenedor_encabezado {
+    display: flex;
+    justify-content: end;
+}
+
+.caja_encabezado {
+    width: 15%;
+    min-width: 300px;
+    background-color: var(--color_4);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 50px 0px 0px 50px;
+    border-color: var(--color_3);
+    border-width: 1px;
+    border-style: solid;
+    padding: 10px;
+    margin-top: 10%;
+}
+
+.texto {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.img {
+    width: 100%;
+    min-width: 35px;
+    min-width: 35px;
+    max-width: 45px; 
+    align-self: center;
+}
+
+.contenedor_contenido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0px;
+}
+
+.caja_contenido {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.contenedor_descarga {
+    width: 30%;
+    min-width: 250px;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.img_robot {
+    width: 20%;
+    min-width: 200px;
+    position: absolute;
+    left: 30px;
+    z-index: -100;
+}
+
+.caja_qr {
+    background-color: var(--color_1);
+    width: 100%;
+    min-width: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    border-color: var(--color_3);
+    border-width: 1px;
+    border-style: solid;
+}
+
+.img_qr {
+    width: 100%;
+    min-width: 200px;
+}
+
+.texto_descarga {
+    text-align: center;
+}
+
+.pantallas {
+    width: 45%;
+    min-width: 250px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.caja_btn {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0px 100px 0px;
+}
+
+.btn {
+    background-color: var(--color_4);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: var(--color_3);
+    border-width: 1px;
+    border-style: solid;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--color_1);
+    filter: drop-shadow(0px 5px 1px rgb(0, 0, 0, 0.5));
+}
+
+
+
+/* ================== Responsive ================== */
+@media (max-width: 1030px) {
+    .img_robot {
+        transform: rotate(-10deg); 
+        left: 10px;
+    }
+}
+
+@media (max-width: 780px) {
+    .caja_contenido {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 630px) {
+    .img_robot {
+        transform: rotate(-30deg); 
+        left: -10px;
+    }
+}

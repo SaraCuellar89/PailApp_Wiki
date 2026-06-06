@@ -1,7 +1,3 @@
-.contenedor {
-    background-color: red;
-}
-
 .caja_encabezado {
     width: 15%;
     min-width: 300px;
@@ -20,9 +16,40 @@
 
 .texto {
     font-size: 20px;
+    font-weight: bold;
 }
 
 .img {
     width: 15%;
     min-width: 35px;
+}
+
+.contenedor_contenido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0px;
+}
+
+.caja_contenido {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.caja_tarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* ================== Responsive ================== */
+@media (max-width: 1210px) {
+    .caja_tarjetas {
+        justify-content: center;
+    }
 }

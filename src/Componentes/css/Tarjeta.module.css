@@ -1,0 +1,61 @@
+.scene {
+    perspective: 800px;
+    width: 200px;
+    height: 260px;
+}
+
+/* hover solo en dispositivos que lo soportan de verdad */
+@media (hover: hover) {
+    .scene:hover .tarjeta {
+        transform: rotateY(180deg);
+    }
+}
+
+/* click para móvil */
+.scene.flipped .tarjeta {
+    transform: rotateY(180deg);
+}
+
+.tarjeta {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    cursor: pointer;
+}
+
+.frente,
+.reverso {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: var(--color_4);
+    border: 1px solid var(--color_3);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 10px;
+    box-sizing: border-box;
+}
+
+.reverso {
+    transform: rotateY(180deg);
+}
+
+.texto_frente {
+    text-align: center;
+    font-weight: bold;
+}
+
+.texto_reverso {
+    text-align: center;
+}
+
+.img_tarjeta {
+    width: 80%;
+}
