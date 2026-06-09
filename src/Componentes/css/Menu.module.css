@@ -1,0 +1,38 @@
+.contenedor_general {
+    /* width: 20%; */
+    min-width: 300px;
+    min-height: 100vh;
+    background-color: var(--color_1);
+    border-right: 1px solid var(--color_3);
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sub_caja {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 30px;
+}
+
+
+
+
+
+/* === Estilos Botones === */
+.caja_btn {
+    background-color: var(--color_1);
+    border-left: 4px solid var(--color_3);
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.caja_btn:hover,
+.btn_seleccionado {
+    background-color: var(--color_4);
+    filter: drop-shadow(0px 5px 1px rgb(0, 0, 0, 0.3));
+}

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
-import animacion from "../assets/batman.json"; // tu archivo lottie
+import animacion from "../assets/batman.json";
 
 const Personaje = () => {
-    const wrapperRef = useRef(null);  // ref al div contenedor
+    const wrapperRef = useRef(null); 
     const animId = useRef(null);
     const state = useRef({
         mode: "border",
@@ -28,7 +28,7 @@ const Personaje = () => {
         const el = wrapperRef.current;
         if (!el) return;
 
-        const SIZE = 120; // mismo que width/height del wrapper
+        const SIZE = 120;
 
         const animate = () => {
             const s = state.current;
@@ -131,7 +131,6 @@ const Personaje = () => {
     }, []);
 
     return (
-        // el div es el que se mueve, el Player vive adentro quieto
         <div
             ref={wrapperRef}
             style={{
@@ -141,7 +140,7 @@ const Personaje = () => {
                 zIndex: 9999,
                 cursor: "grab",
                 touchAction: "none",
-                overflow: "visible",  // 👈 por si el lottie se sale
+                overflow: "visible",  
             }}
         >
             <Player
@@ -151,9 +150,9 @@ const Personaje = () => {
                 style={{
                     width: 120,
                     height: 120,
-                    margin: 0,        // 👈 elimina márgenes
-                    padding: 0,       // 👈 elimina padding
-                    display: "block", // 👈 evita espacio inline
+                    margin: 0,        
+                    padding: 0,       
+                    display: "block", 
                 }}
             />
         </div>

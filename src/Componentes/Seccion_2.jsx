@@ -1,13 +1,14 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import estilos from "../Componentes/css/Seccion_2.module.css" 
 import descarga from "../assets/icono_descarga.png"
 import robot from "../assets/personaje.png"
 import qr from "../assets/qr.png"
 import pantallas from "../assets/pantallas.png"
 
-const Seccion_2 = () => {
+const Seccion_2 = forwardRef((props, ref_seccion_2) => {
+    
     return(
-        <div>
+        <div ref={ref_seccion_2}>
             <div className={estilos.contenedor_encabezado}>
                 <div className={estilos.caja_encabezado}>
                     <img className={estilos.img} src={descarga} alt="" />
@@ -39,6 +40,6 @@ const Seccion_2 = () => {
             </div>
         </div>
     )
-}
+})
 
 export default Seccion_2;
