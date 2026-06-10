@@ -18,7 +18,7 @@ const Inicio = () => {
             <Encabezado
                 Abrir_Busqueda={() => setBuscar(true)}
             />
-            
+
             <div className={estilos.caja_1}>
                 <Saludo 
                     scrollRef={ref_seccion_2}

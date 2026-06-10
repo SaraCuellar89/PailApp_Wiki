@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
-import animacion from "../assets/batman.json";
+import caminar from "../assets/caminar.webm";  
+import caer from "../assets/caer.webm";  
+import rebotar from "../assets/rebotar.webm";
+import forcejear from "../assets/forcejear.webm";
 
 const Personaje = () => {
     const wrapperRef = useRef(null); 
+    const videoRef = useRef(null);  // 👈 referencia al video
     const animId = useRef(null);
     const state = useRef({
         mode: "border",
@@ -17,6 +20,16 @@ const Personaje = () => {
     });
     const speed = -1.5;
 
+    // 👇 función para cambiar la animación
+    const setAnimacion = (src) => {
+        const video = videoRef.current;
+        if (!video) return;
+        if (video.currentSrc.includes(src.split("/").pop())) return; // evita reiniciar si ya está
+        video.src = src;
+        video.load();
+        video.play();
+    };
+
     const rotaciones = {
         top:    "rotate(180deg)",
         right:  "rotate(270deg)",
@@ -28,7 +41,7 @@ const Personaje = () => {
         const el = wrapperRef.current;
         if (!el) return;
 
-        const SIZE = 120;
+        const SIZE = 150;
 
         const animate = () => {
             const s = state.current;
@@ -36,6 +49,7 @@ const Personaje = () => {
             const H = window.innerHeight - SIZE;
 
             if (s.mode === "border") {
+                setAnimacion(caminar); // 👈 caminando en el borde
                 const perimeter = 2 * (W + H);
                 const dist = (s.progress % perimeter + perimeter) % perimeter;
 
@@ -56,23 +70,33 @@ const Personaje = () => {
                 el.style.transform = rotaciones[s.segment];
                 s.progress += speed;
 
+            } else if (s.mode === "drag") {
+                setAnimacion(forcejear); // 👈 mientras lo arrastras
+                el.style.transform = `rotate(0deg)`;
+
             } else if (s.mode === "fall") {
                 s.vy += 0.6;
                 s.y  += s.vy;
-                el.style.transform = `rotate(${s.y * 2}deg)`;
+                // el.style.transform = `rotate(${s.y * 2}deg)`;
+                el.style.transform = `rotate(0deg)`;
 
                 if (s.y >= H) {
                     s.y   = H;
                     s.vy *= -0.4;
 
                     if (Math.abs(s.vy) < 1) {
+                        setAnimacion(rebotar); // 👈 rebotando al llegar al suelo
                         s.vy   = 0;
                         s.mode = "border";
                         const perimeter = 2 * (W + H);
                         s.progress = (2 * W + H - s.x + perimeter) % perimeter;
                         s.segment  = "bottom";
                         el.style.transform = rotaciones["bottom"];
+                    } else {
+                        setAnimacion(caer); // 👈 cayendo en el aire
                     }
+                } else {
+                    setAnimacion(caer); // 👈 cayendo
                 }
             }
 
@@ -83,6 +107,7 @@ const Personaje = () => {
 
         animId.current = requestAnimationFrame(animate);
 
+        // ... todos tus eventos igual ...
         const getXY = (e) => {
             if (e.touches && e.touches.length > 0) {
                 return { clientX: e.touches[0].clientX, clientY: e.touches[0].clientY };
@@ -135,26 +160,30 @@ const Personaje = () => {
             ref={wrapperRef}
             style={{
                 position: "fixed",
-                width: 120,
-                height: 120,
+                width: 150,
+                height: 150,
                 zIndex: 9999,
                 cursor: "grab",
                 touchAction: "none",
                 overflow: "visible",  
             }}
         >
-            <Player
-                src={animacion}
-                autoplay
+            <video
+                ref={videoRef}  // 👈 
+                autoPlay
                 loop
+                muted
+                playsInline
                 style={{
-                    width: 120,
-                    height: 120,
+                    width: 150,
+                    height: 150,
                     margin: 0,        
                     padding: 0,       
                     display: "block", 
                 }}
-            />
+            >
+                <source src={caminar} type="video/webm" />
+            </video>
         </div>
     );
 };
