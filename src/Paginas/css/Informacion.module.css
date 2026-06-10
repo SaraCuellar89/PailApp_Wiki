@@ -13,3 +13,31 @@
     overflow-x: hidden; 
     flex-shrink: 0;
 }
+
+
+
+/* ================== Responsive ================== */
+@media (max-width: 800px) {
+    .menu_sticky {
+        position: sticky;  
+        top: 50px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 50px);
+        z-index: 50;     
+        overflow-y: auto;
+    }
+
+    .menu_cerrado {
+        display: none;
+    }
+
+    .menu_abierto {
+        display: block;
+    }
+
+    .caja {
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import estilos from "../Componentes/css/Buscar.module.css" 
 import icono_lupa from "../assets/icono_lupa.png";
 
-const Buscar = ({Cerrar_Busqueda }) => {
+const Buscar = ({Cerrar_Busqueda}) => {
 
     const ref_input = useRef(null);
 
@@ -22,6 +22,8 @@ const Buscar = ({Cerrar_Busqueda }) => {
                         placeholder="Busca algo..."
                     />
                 </div>
+
+                <button className={estilos.btn_cancelar} onClick={Cerrar_Busqueda}>Cancelar</button>
             </div>
         </div>
     )
