@@ -7,23 +7,26 @@ import bailar from "../assets/bailar.webm";
 import saludar from "../assets/saludar.webm";
 
 const IDLE_ANIMS = [bailar, saludar];
-const IDLE_MIN_MS = 5000;   // mínimo 5s entre pausas
-const IDLE_MAX_MS = 15000;  // máximo 15s entre pausas
-const IDLE_DURATION_MS = 3000; // cuánto dura la pausa
+const IDLE_MIN_MS = 5000;
+const IDLE_MAX_MS = 15000;
+const IDLE_DURATION_MS = 3000;
 
 const Personaje = () => {
     const wrapperRef = useRef(null);
     const videoRef = useRef(null);
     const animId = useRef(null);
-    // 👇 referencias para los timers (así podemos cancelarlos)
     const idleTimerRef = useRef(null);
     const idleEndTimerRef = useRef(null);
+
+    // ✅ Ref para trackear la animación actual sin comparar strings frágiles
+    const currentSrcRef = useRef(null);
 
     const state = useRef({
         mode: "border",
         progress: 0,
         x: 0,
         y: 0,
+        vx: 0,
         vy: 0,
         offsetX: 0,
         offsetY: 0,
@@ -31,10 +34,22 @@ const Personaje = () => {
     });
     const speed = -1.5;
 
+    // ✅ Precarga silenciosa de los videos idle para evitar delay al cambiar
+    useEffect(() => {
+        IDLE_ANIMS.forEach((src) => {
+            const v = document.createElement("video");
+            v.src = src;
+            v.preload = "auto";
+            v.muted = true;
+        });
+    }, []);
+
     const setAnimacion = (src) => {
         const video = videoRef.current;
         if (!video) return;
-        if (video.currentSrc.includes(src.split("/").pop())) return;
+        // ✅ Comparación directa con ref en lugar de comparar strings con includes()
+        if (currentSrcRef.current === src) return;
+        currentSrcRef.current = src;
         video.src = src;
         video.load();
         video.play();
@@ -47,12 +62,10 @@ const Personaje = () => {
         left:   "rotate(90deg)",
     };
 
-    // 👇 Programa la próxima pausa aleatoria
     const scheduleNextIdle = () => {
         clearTimeout(idleTimerRef.current);
         const delay = IDLE_MIN_MS + Math.random() * (IDLE_MAX_MS - IDLE_MIN_MS);
         idleTimerRef.current = setTimeout(() => {
-            // Solo entra en idle si sigue caminando
             if (state.current.mode !== "border") {
                 scheduleNextIdle();
                 return;
@@ -61,17 +74,15 @@ const Personaje = () => {
             state.current.mode = "idle";
             setAnimacion(anim);
 
-            // Vuelve a caminar después de IDLE_DURATION_MS
             idleEndTimerRef.current = setTimeout(() => {
                 if (state.current.mode === "idle") {
                     state.current.mode = "border";
                 }
-                scheduleNextIdle(); // programa la siguiente pausa
+                scheduleNextIdle();
             }, IDLE_DURATION_MS);
         }, delay);
     };
 
-    // 👇 Cancela todos los timers de idle (al arrastrar o caer)
     const cancelIdleTimers = () => {
         clearTimeout(idleTimerRef.current);
         clearTimeout(idleEndTimerRef.current);
@@ -93,16 +104,16 @@ const Personaje = () => {
                 const dist = (s.progress % perimeter + perimeter) % perimeter;
 
                 if (dist < W) {
-                    s.x = dist;  s.y = 0;
+                    s.x = dist; s.y = 0;
                     s.segment = "top";
                 } else if (dist < W + H) {
-                    s.x = W;  s.y = dist - W;
+                    s.x = W; s.y = dist - W;
                     s.segment = "right";
-                } else if (dist < 2*W + H) {
-                    s.x = 2*W + H - dist;  s.y = H;
+                } else if (dist < 2 * W + H) {
+                    s.x = 2 * W + H - dist; s.y = H;
                     s.segment = "bottom";
                 } else {
-                    s.x = 0;  s.y = 2*(W+H) - dist;
+                    s.x = 0; s.y = 2 * (W + H) - dist;
                     s.segment = "left";
                 }
 
@@ -110,22 +121,32 @@ const Personaje = () => {
                 s.progress += speed;
 
             } else if (s.mode === "idle") {
-                // 👇 Se queda quieto, solo reproduce la animación (ya se asignó en el timer)
                 el.style.transform = rotaciones[s.segment];
-                // no se mueve: x e y no cambian
 
             } else if (s.mode === "drag") {
                 setAnimacion(forcejear);
                 el.style.transform = `rotate(0deg)`;
 
             } else if (s.mode === "fall") {
-                s.vy += 0.6;
+                s.vy += 0.6;        // gravedad
                 s.y  += s.vy;
-                el.style.transform = `rotate(0deg)`;
+                s.x  += s.vx;
+                s.vx *= 0.98;       // fricción del aire
 
+                // Rebote en paredes laterales
+                if (s.x <= 0) {
+                    s.x = 0;
+                    s.vx *= -0.6;
+                } else if (s.x >= W) {
+                    s.x = W;
+                    s.vx *= -0.6;
+                }
+
+                // Rebote en suelo (igual que antes)
                 if (s.y >= H) {
                     s.y   = H;
                     s.vy *= -0.4;
+                    s.vx *= 0.85;   // fricción en el suelo
 
                     if (Math.abs(s.vy) < 1) {
                         setAnimacion(rebotar);
@@ -135,7 +156,7 @@ const Personaje = () => {
                         s.progress = (2 * W + H - s.x + perimeter) % perimeter;
                         s.segment  = "bottom";
                         el.style.transform = rotaciones["bottom"];
-                        scheduleNextIdle(); // 👈 reagenda después de aterrizar
+                        scheduleNextIdle();
                     } else {
                         setAnimacion(caer);
                     }
@@ -150,7 +171,7 @@ const Personaje = () => {
         };
 
         animId.current = requestAnimationFrame(animate);
-        scheduleNextIdle(); // 👈 arranca la primera pausa aleatoria
+        scheduleNextIdle();
 
         const getXY = (e) => {
             if (e.touches && e.touches.length > 0) {
@@ -162,7 +183,7 @@ const Personaje = () => {
         const onStart = (e) => {
             const s = state.current;
             const { clientX, clientY } = getXY(e);
-            cancelIdleTimers(); // 👈 cancela cualquier pausa pendiente
+            cancelIdleTimers();
             s.mode    = "drag";
             s.offsetX = clientX - s.x;
             s.offsetY = clientY - s.y;
@@ -172,15 +193,19 @@ const Personaje = () => {
         const onMove = (e) => {
             if (state.current.mode !== "drag") return;
             const { clientX, clientY } = getXY(e);
-            state.current.x = clientX - state.current.offsetX;
-            state.current.y = clientY - state.current.offsetY;
+            const s = state.current;
+
+            // Velocidad = diferencia de posición entre frames
+            s.vx = clientX - s.offsetX - s.x;
+            s.vy = clientY - s.offsetY - s.y;
+
+            s.x = clientX - s.offsetX;
+            s.y = clientY - s.offsetY;
         };
 
         const onEnd = () => {
             if (state.current.mode !== "drag") return;
             state.current.mode = "fall";
-            state.current.vy   = 0;
-            // scheduleNextIdle se llama cuando aterriza (en el bloque fall)
         };
 
         el.addEventListener("mousedown", onStart);
@@ -192,7 +217,7 @@ const Personaje = () => {
 
         return () => {
             cancelAnimationFrame(animId.current);
-            cancelIdleTimers(); // 👈 limpia al desmontar
+            cancelIdleTimers();
             el.removeEventListener("mousedown", onStart);
             window.removeEventListener("mousemove", onMove);
             window.removeEventListener("mouseup", onEnd);
@@ -213,8 +238,8 @@ const Personaje = () => {
                 cursor: "grab",
                 touchAction: "none",
                 overflow: "visible",
-                lineHeight: 0,      // 👈 elimina el gap de inline
-                fontSize: 0, 
+                lineHeight: 0,
+                fontSize: 0,
             }}
         >
             <video
@@ -229,7 +254,7 @@ const Personaje = () => {
                     margin: 0,
                     padding: 0,
                     display: "block",
-                    objectFit: "cover",   // 👈 o "contain" dependiendo del video
+                    objectFit: "cover",
                     verticalAlign: "bottom",
                 }}
             >
