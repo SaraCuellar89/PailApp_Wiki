@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import caminar from "../assets/caminar.webm";
-import caer from "../assets/caer.webm";
-import rebotar from "../assets/rebotar.webm";
-import forcejear from "../assets/forcejear.webm";
-import bailar from "../assets/bailar.webm";
-import saludar from "../assets/saludar.webm";
+import caminar from "https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/v1.0-assets/caminar.webm";
+import caer from "https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/v1.0-assets/caer.webm";
+import rebotar from "https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/v1.0-assets/rebotar.webm";
+import forcejear from "https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/v1.0-assets/forcejear.webm";
+import bailar from "https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/v1.0-assets/bailar.webm";
+import saludar from "https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/v1.0-assets/saludar.webm";
 
 const IDLE_ANIMS = [bailar, saludar];
 const IDLE_MIN_MS = 5000;

@@ -1,6 +1,6 @@
 import React from "react";
 import estilos from "../Componentes/css/Archivos.module.css";
-import manual from "../assets/Manual_Usuarios.pdf"
+import manual from "https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/v1.0-assets/Manual_Usuarios.pdf"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "github-markdown-css/github-markdown.css";
