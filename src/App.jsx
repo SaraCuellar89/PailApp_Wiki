@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Inicio from "./paginas/Inicio";
+import Inicio from "./Paginas/Inicio";
 import Informacion from "./Paginas/Informacion";
 
 const App = () => {
