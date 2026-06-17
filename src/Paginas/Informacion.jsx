@@ -9,6 +9,15 @@ import Descargar_APK from "../Componentes/Descargar_APK";
 import Manual_Usuarios from "../Componentes/Manul_Usuarios";
 import Buscar from "../Componentes/Buscar";
 import Personaje from "../Componentes/Personaje";
+import PailApp_Info from "../Componentes/PailApp_Info";
+import Modelos from "../Componentes/Modelos";
+import Iniciar_Sesion from "../Componentes/Iniciar_Sesion";
+import Crear_Cuenta from "../Componentes/Crear_Cuenta";
+import Datos_Adicionales from "../Componentes/Datos_Adicionales";
+import Explorar_Platos from "../Componentes/Explorar_Platos";
+import Subir_Plato from "../Componentes/Subir_Plato";
+import Comentarios_Respuestas from "../Componentes/Comentarios_Respuestas";
+import Perfil from "../Componentes/Perfil";
 
 const Informacion = () => {
 
@@ -18,13 +27,21 @@ const Informacion = () => {
 
     const renderizar_info = () => {
         switch (opcion?.texto) {
-            case "Backend":       return <Backend />;
-            case "Frontend":      return <Frontend />;
-            case "Agente":        return <Agente />;
-            case "Descargar APK":        return <Descargar_APK />;
-            case "Manual de Usuarios":        return <Manual_Usuarios />;
-            // ... todos los subitems
-            default: return <Backend />;
+            case "Qué es PailApp y para qué sirve": return <PailApp_Info />;
+            case "Modelos": return <Modelos />;
+            case "Crear una cuenta": return <Crear_Cuenta />;
+            case "Descargar e instalar la APK": return <Descargar_APK />;
+            case "Iniciar sesión": return <Iniciar_Sesion />;
+            case "Ingresar datos adicionales": return <Datos_Adicionales />;
+            case "Cómo explorar y filtrar platos": return <Explorar_Platos />;
+            case "Cómo publicar tu propio plato": return <Subir_Plato />;
+            case "Comentarios y respuestas": return <Comentarios_Respuestas />;
+            case "Tu perfil y platos subidos": return <Perfil />;
+            case "Backend": return <Backend />;
+            case "Frontend": return <Frontend />;
+            case "Agente": return <Agente />;
+            case "Manual de Usuarios": return <Manual_Usuarios />;
+            default: return <PailApp_Info />;
         }
     };
 

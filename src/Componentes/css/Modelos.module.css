@@ -1,0 +1,24 @@
+.contenedor_modelos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.caja_modelo {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color_4);
+    border-radius: 20px;
+    border-color: var(--color_3);
+    border-width: 1px;
+    border-style: solid;
+}
+
+.img_modelo {
+    width: 300px;
+}

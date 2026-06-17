@@ -57,6 +57,24 @@
     color: black;
 }
 
+.contenedor_capturas {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caja_capturas {
+    width: 50%;
+    min-width: 300px;
+}
+
+.img_capturas {
+    width: 100%;
+    border-radius: 10px;
+    filter: drop-shadow(0px 5px 1px rgb(0, 0, 0, 0.3));
+}
+
 
 
 /* ================== Responsive ================== */

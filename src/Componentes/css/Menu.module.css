@@ -21,6 +21,7 @@
 
 /* === Estilos Botones === */
 .caja_btn {
+    width: 300px;
     background-color: var(--color_1);
     border-left: 4px solid var(--color_3);
     border-radius: 10px;
