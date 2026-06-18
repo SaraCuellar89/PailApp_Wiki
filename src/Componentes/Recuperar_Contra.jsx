@@ -3,27 +3,24 @@ import estilos from "../Componentes/css/Archivos.module.css"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "github-markdown-css/github-markdown.css";
-import captura from "../assets/crear_cuenta.png"
+import captura from "../assets/recuperar_contra.png"
 
-const Crear_Cuenta = ({opcion}) => {
+const Recuperar_Contra = ({opcion}) => {
 
 
-const readmeContent = `## Crea una cuenta
+const readmeContent = `## Recuperar contraseña
 
-Guía para crear una cuenta de manera local, sin google.
-
-> Recuerda que debes tener acceso al correo que vas a registrar en caso de que se te olvide tu contraseña. 
+Guía para poder cambiar tu contraseña en caso de que la hayas olvidado.
 
 ### Elementos de la interfaz
 
 | # | Elemento | Descripción |
 |---|----------|-------------|
-| 1 | **Nombre de usuario** | Escribe el nombre que desees |
-| 2 | **Avatar** | Selecciona un avatar para tu perfil |
-| 3 | **Correo electrónico** | Escribe tu correo electrónico |
-| 4 | **Contraseña** | Escribe una contraseña |
+| 1 | **Correo electrónico** | Escribe tu correo electrónico |
+| 2 | **Enviar código** | Oprime para que te llegue un código al correo |
+| 3 | **Código de verificación** | Escribe el código que te llegó al correo |
+| 4 | **Nueva contraseña** | Escribe una nueva contraseña |
 | 5 | **Confirmar contraseña** | Escribe nuevamente tu contraseña |
-| 6 | **Continuar con Google** | Oprime si quieres entrar con tu cuenta de Google |
 `;
 
     return(
@@ -38,4 +35,4 @@ Guía para crear una cuenta de manera local, sin google.
     )
 }
 
-export default Crear_Cuenta;
+export default Recuperar_Contra;

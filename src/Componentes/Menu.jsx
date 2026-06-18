@@ -51,6 +51,7 @@ const Menu = ({opcion, setOpcion}) => {
                 { texto: "Platos guardados y listas de ingredientes" },
                 { texto: "Notificaciones" },
                 { texto: "Configuración (editar datos, cambiar contraseña, eliminar cuenta)" },
+                { texto: "Recuperar contraseña" },
             ]
         },
         {

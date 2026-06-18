@@ -24,14 +24,15 @@
 .caja {
     background-color: var(--color_1);
     width: 60%;
-    min-height: 30vh;
     padding: 10px;
     border-radius: 10px;
     border-color: var(--color_3);
     border-width: 1px;
     border-style: solid;
     display: flex;
-    justify-content: center;
+    flex-direction: column; 
+    align-items: center;
+    gap: 8px;
 }
 
 .sub_caja {
@@ -72,6 +73,51 @@
     border-style: solid;
 }
 
+.resultados {
+    width: 100%;              
+    max-height: 360px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+.resultado_item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    cursor: pointer;
+    background: var(--color_1);
+    border-radius: 8px;
+    border: 1px solid var(--color_3);
+    transition: background .3s;
+}
+
+.resultado_item:hover {
+    background-color: var(--color_4);
+    filter: drop-shadow(0px 5px 1px rgb(0, 0, 0, 0.5));
+}
+
+.resultado_seccion {
+    font-size: 12px;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.resultado_texto {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+}
+
+.sin_resultados {
+    padding: 16px;
+    text-align: center;
+    color: black;
+    font-size: 14px;
+}
+
 
 /* ================== Responsive ================== */
 @media (max-width: 700px) {
@@ -80,10 +126,12 @@
     }
 
     .caja {
-        position: fixed;
+        position: fixed;         /* fixed sobreescribe relative, está bien */
         height: 100vh;
         width: 100%;
         display: flex;
+        flex-direction: column;  /* ← agregar esto también aquí */
+        align-items: center;     /* ← también aquí */
         gap: 5px;
         padding-top: 20px;
     }

@@ -6,8 +6,11 @@ import Seccion_1 from "../Componentes/Seccion_1";
 import Seccion_2 from "../Componentes/Seccion_2";
 import Personaje from "../Componentes/Personaje";
 import Buscar from "../Componentes/Buscar";
+import { useNavigate } from "react-router-dom";
 
 const Inicio = () => {
+
+    const navigate = useNavigate(); 
 
     const ref_seccion_2 = useRef(null);
 
@@ -32,7 +35,14 @@ const Inicio = () => {
 
             <Personaje/>
 
-            {buscar ? <Buscar Cerrar_Busqueda={() => setBuscar(false)}/> : null}
+            {buscar ? (
+                <Buscar
+                    Cerrar_Busqueda={() => setBuscar(false)}
+                    setOpcion={(op) => {
+                        navigate("/Info", { state: { opcion: op } }); 
+                    }}
+                />
+            ) : null}
        </div> 
     )
 }
