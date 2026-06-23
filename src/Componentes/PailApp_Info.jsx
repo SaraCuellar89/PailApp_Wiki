@@ -53,12 +53,25 @@ Rescatar y visibilizar la gastronomía colombiana tradicional y regional, rompie
 | Kevin Páez | Frontend & Modelado 3D |
 
 > Todos aprendices del SENA en Análisis y Desarrollo de Software.
+
+## Documentación
+
+[Descargar informe PDF](https://drive.google.com/file/d/1ODgiS7lnfCdthQ-9mEDdAYCa5lGDD8G4/view?usp=drive_link)
 `;
 
 const PailApp_Info = ({ opcion }) => {
     return (
         <div className={`markdown-body ${estilos.contenedor}`}>
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{readmeContent}</ReactMarkdown>
+            <ReactMarkdown 
+                remarkPlugins={[remarkGfm]}
+                components={{
+                    a: ({ href, children }) => (
+                        <a href={href} target="_blank" rel="noreferrer">{children}</a>
+                    )
+                }}
+            >
+                {readmeContent}
+            </ReactMarkdown>
         </div>
     );
 };

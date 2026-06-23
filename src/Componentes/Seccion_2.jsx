@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import estilos from "../Componentes/css/Seccion_2.module.css" 
 import descarga from "../assets/icono_descarga.png"
 import robot from "../assets/personaje.png"
-import qr from "../assets/qr.png"
+import qr from "../assets/PailApp_v8 qr.png"
 import pantallas from "../assets/pantallas.png"
 
 const Seccion_2 = forwardRef((props, ref_seccion_2) => {
@@ -33,11 +33,11 @@ const Seccion_2 = forwardRef((props, ref_seccion_2) => {
 
             </div>
 
-            <div className={estilos.caja_btn}>
+            <a href="https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/apk/PailApp_v8.apk" download className={estilos.caja_btn}>
                 <div className={estilos.btn}>
                     <p className={estilos.texto_btn}>Descargar PailApp v.1</p>
                 </div>
-            </div>
+            </a>
         </div>
     )
 })
