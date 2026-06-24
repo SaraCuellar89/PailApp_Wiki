@@ -34,7 +34,7 @@ const Descargar_APK = ({ opcion }) => {
                     style={{ width: 200, height: 200 }}
                 />
                 <p style={{ marginTop: "1rem" }}>
-                    <a href="/pailapp.apk" download>
+                    <a href="https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/apk/PailApp_v8.apk" download>
                         Descargar APK directamente
                     </a>
                 </p>
