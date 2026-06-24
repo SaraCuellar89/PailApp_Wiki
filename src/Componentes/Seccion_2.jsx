@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import estilos from "../Componentes/css/Seccion_2.module.css" 
 import descarga from "../assets/icono_descarga.png"
 import robot from "../assets/personaje.png"
-import qr from "../assets/PailApp_v8 qr.png"
+import qr from "../assets/PailApp_v8_qr.png"
 import pantallas from "../assets/pantallas.png"
 
 const Seccion_2 = forwardRef((props, ref_seccion_2) => {
