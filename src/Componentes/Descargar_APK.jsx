@@ -3,7 +3,7 @@ import estilos from "../Componentes/css/Archivos.module.css";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "github-markdown-css/github-markdown.css";
-import qr from "../assets/qr.png"
+import qr from "../assets/PailApp_v8_qr.png"
 
 const readmeContent = `# Descargar PailApp
 
