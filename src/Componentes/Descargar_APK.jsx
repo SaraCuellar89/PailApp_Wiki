@@ -3,7 +3,7 @@ import estilos from "../Componentes/css/Archivos.module.css";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "github-markdown-css/github-markdown.css";
-import qr from "../assets/PailApp_v8_qr.png"
+import qr from "../assets/PailApp_v10_qr.png"
 
 const readmeContent = `# Descargar PailApp
 
@@ -34,7 +34,7 @@ const Descargar_APK = ({ opcion }) => {
                     style={{ width: 200, height: 200 }}
                 />
                 <p style={{ marginTop: "1rem" }}>
-                    <a href="https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/apk/PailApp_v8.apk" download>
+                    <a href="https://github.com/SaraCuellar89/PailApp_Wiki/releases/download/apk/PailApp_v10.apk" download>
                         Descargar APK directamente
                     </a>
                 </p>
